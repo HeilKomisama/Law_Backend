@@ -5,13 +5,11 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import { register } from "./controllers/auth.js";
-import authRoutes from "./routes/auth.js";
+import autheRoutes from "./routes/authe.js";
 
 // CONFIGURATIONS
 // remove the stuff that i don't need (picture uploading is not needed)
@@ -28,21 +26,9 @@ app.use(bodyParser.urlencoded( {limit: "30mb", extended: true}));
 app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-// FILE STORAGE
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'public/assets')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname)
-//   }
-// });
-// const upload = multer({ storage });
-
 // ROUTES
 // authorization will be implemented later and used on every feature of the website because user accounts are mandatory by default; 57:34
-app.post("/auth/register", register);
-app.use("/auth", authRoutes);
+app.use("/authe", autheRoutes);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 6001; 
