@@ -1,5 +1,4 @@
-// remove modules for uploading pictures (not needed for the project's use case)
-
+// server file
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -35,5 +34,6 @@ const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+    console.log("MongoDB connected");
   })
   .catch((error) => console.log(`${error} did not connect`));
